@@ -1,0 +1,2 @@
+I have completed all steps of Lab 1, and confirmed that my environment works as expected
+There is a screenshot of the console output if needed
