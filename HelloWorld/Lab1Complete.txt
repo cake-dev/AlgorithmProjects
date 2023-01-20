@@ -1,2 +1,9 @@
 I have completed all steps of Lab 1, and confirmed that my environment works as expected
-There is a screenshot of the console output if needed
+
+output java HelloWorld:
+>$ Hello, World
+
+output java HelloJars:
+>$ Hello, World
+>$ 17 + 23 = 40
+
