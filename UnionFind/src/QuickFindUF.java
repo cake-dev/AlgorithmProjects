@@ -36,5 +36,6 @@ public class QuickFindUF {
         uf.union(6, 1);
         uf.union(7, 3);
         System.out.println(uf.connected(5, 4));
+        StdOut.println(uf.connected(5, 4));
     }
 }

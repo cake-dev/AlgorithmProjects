@@ -1,0 +1,11 @@
+{
+    "java.project.sourcePaths": [
+        "HelloWorld/src",
+        "UnionFind/UnionFind/src"
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/jake/School/Spring2023/Algo/jars/algs4.jar",
+        "/home/jake/School/Spring2023/Algo/jars/stdlib.jar"
+    ]
+}

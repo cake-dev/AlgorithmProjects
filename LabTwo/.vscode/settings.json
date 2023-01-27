@@ -1,0 +1,11 @@
+{
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/jake/School/Spring2023/Algo/jars/algs4.jar",
+        "/home/jake/School/Spring2023/Algo/jars/stdlib.jar"
+    ]
+}
