@@ -103,7 +103,7 @@ public class Percolation {
         p.open(0, 0);
         p.open(1, 0);
         p.open(2, 0);
-        p.open(3, 0); // THIS GOES OUT OF BOUNDS
+        p.open(3, 0); // TODO FIXME: THIS GOES OUT OF BOUNDS
         System.out.println(p.unionFind.connected(12, 17));
     }
 }
