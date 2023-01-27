@@ -42,8 +42,8 @@ public class Percolation {
                                                // the current site
             unionFind.union(get1DFrom2D(row, col), get1DFrom2D(row - 1, col));
         }
-        if (row < gSize && isOpen(row + 1, col)) { // if the site below is open (row+1 moves down 1 row), union it
-                                                   // with the current site
+        if (row < gSize - 1 && isOpen(row + 1, col)) { // if the site below is open (row+1 moves down 1 row), union it
+                                                       // with the current site
             unionFind.union(get1DFrom2D(row, col), get1DFrom2D(row + 1, col));
         }
 
@@ -52,8 +52,8 @@ public class Percolation {
                                                // it with the current site
             unionFind.union(get1DFrom2D(row, col), get1DFrom2D(row, col - 1));
         }
-        if (col < gSize && isOpen(row, col + 1)) { // if the site to the right is open (col+1 moves right 1 column),
-                                                   // union it with the current site
+        if (col < gSize - 1 && isOpen(row, col + 1)) { // if the site to the right is open (col+1 moves right 1 column),
+                                                       // union it with the current site
             unionFind.union(get1DFrom2D(row, col), get1DFrom2D(row, col + 1));
         }
 
@@ -105,5 +105,6 @@ public class Percolation {
         p.open(2, 0);
         p.open(3, 0); // TODO FIXME: THIS GOES OUT OF BOUNDS
         System.out.println(p.unionFind.connected(12, 17));
+        System.out.println(p.percolates());
     }
 }
