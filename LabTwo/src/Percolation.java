@@ -2,7 +2,7 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
     private boolean[][] gridSites;
-    private int gSize;
+    public int gSize;
     private int topNode;
     private int bottomNode;
     private int numOpenSites;
@@ -21,17 +21,22 @@ public class Percolation {
         bottomNode = gSize * gSize + 1; // bottomNode set to the size^2+1 to create a "virtual bottom site"
 
         // connect the top row to the topNode, bottom row to the bottomNode
+        // NOTE: DONT NEED THIS
         for (int i = 0; i < gSize; i++) { // loop from 0 to i, where max i is the length of the row
-            unionFind.union(topNode, get1DFrom2D(0, i)); // union the topNode with each top row value in the UF object
+            // unionFind.union(topNode, get1DFrom2D(0, i)); // union the topNode with each
+            // top row value in the UF object
 
-            unionFind.union(bottomNode, get1DFrom2D(gSize - 1, i)); // union the bottomNode with each bottow row value
-                                                                    // in the UF object (gSize-1 to avoid out of bounds)
+            // unionFind.union(bottomNode, get1DFrom2D(gSize - 1, i)); // union the
+            // bottomNode with each bottow row value
+            // in the UF object (gSize-1 to avoid out of bounds)
         }
 
     }
 
     public void open(int row, int col) {
         // open the site (row, col) if it is not open already
+        if (isOpen(row, col))
+            return; // if the site is already open, return (do nothing
         gridSites[row][col] = true;
         numOpenSites++;
 
@@ -57,7 +62,7 @@ public class Percolation {
             unionFind.union(get1DFrom2D(row, col), get1DFrom2D(row, col + 1));
         }
 
-        // cases for top and bottom node
+        // cases for top and bottom rows (union with top and bottom nodes)
         if (row == 0) {
             unionFind.union(topNode, get1DFrom2D(row, col));
         }
@@ -103,7 +108,7 @@ public class Percolation {
         p.open(0, 0);
         p.open(1, 0);
         p.open(2, 0);
-        p.open(3, 0); // TODO FIXME: THIS GOES OUT OF BOUNDS
+        p.open(3, 0);
         System.out.println(p.unionFind.connected(12, 17));
         System.out.println(p.percolates());
     }

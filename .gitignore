@@ -25,3 +25,7 @@ hs_err_pid*
 # other files
 HelloWorld/Lab1Complete.txt
 LabTwo/percolation/*
+LabTwo/bin/images/*
+LabTwo/bin/inputs/*
+LabTwo/src/images/*
+LabTwo/src/inputs/*
