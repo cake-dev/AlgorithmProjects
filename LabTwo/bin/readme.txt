@@ -1,7 +1,7 @@
 /******************************************************************************
- *  Name:     
+ *  Name:     Jake Bova
  *
- *  Hours to complete assignment (optional):
+ *  Hours to complete assignment (optional): ~= 6
  *
  ******************************************************************************/
 
@@ -12,7 +12,10 @@ Programming Assignment 1: Percolation
  *  Describe how you implemented Percolation.java. How did you check
  *  whether the system percolates? This should be something like 3-5 sentences.
  *****************************************************************************/
-
+I implemented percolation.java using a custom percolation class, as well as the WeightedQuickUnionUF class.
+I checked whether the system percolates by checking if the top and bottom virtual sites are connected.
+I did this by using the WeightedQuickUnionUF class to connect the top and bottom virtual sites to the top and bottom rows of the grid.
+Then, I checked if the top and bottom virtual sites were connected using the connected method of the WeightedQuickUnionUF class.
 
 
 
