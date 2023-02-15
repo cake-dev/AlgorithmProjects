@@ -49,7 +49,7 @@ public class RandomizedBag<Item> implements Iterable<Item> {
     private void resize(int capacity) {
         assert capacity >= n;
 
-        // thanks Sedgewick
+        // thanks Sedgewick (resizing array stack)
         Item[] temp = (Item[]) new Object[capacity];
         for (int i = 0; i < n; i++) {
             temp[i] = a[i];
@@ -63,7 +63,7 @@ public class RandomizedBag<Item> implements Iterable<Item> {
     public void put(Item item) {
         if (n == a.length)
             resize(2 * a.length); // double size of array if necessary
-        a[n++] = item;
+        a[n++] = item; // place item and incriment num items
     }
 
     /**
@@ -71,13 +71,14 @@ public class RandomizedBag<Item> implements Iterable<Item> {
      */
     public Item get() {
         Item item = null;
-        if (isEmpty())
+        if (isEmpty()) // if the bag is empty, throw an exception
             throw new NoSuchElementException("out of bounds (underflow)");
-        int r = rng.nextInt(n);
-        item = a[r];
-        a[r] = a[n - 1];
-        a[n - 1] = null;
-        n--;
+        int r = rng.nextInt(n); // returns a uniform random value between [0 and n)
+        item = a[r]; // grabs the item at the random index
+        a[r] = a[n - 1]; // move the last element into position where random was (overwrites the value we
+                         // grabbed)
+        a[n - 1] = null; // remove the final element (because it was copied to a[r])
+        n--; // reduce num items
         if (n > 0 && n == a.length / 4)
             resize(a.length / 2); // shrink size of array if necessary
         return item;
@@ -85,11 +86,11 @@ public class RandomizedBag<Item> implements Iterable<Item> {
 
     // returns a random item and does NOT remove it
     public Item sample() {
-        Item item = null;
-        if (isEmpty())
+        Item item = null; // instantiate item
+        if (isEmpty()) // if the bag is empty, throw an exception
             throw new NoSuchElementException("out of bounds (underflow)");
-        int r = rng.nextInt(n);
-        item = a[r];
+        int r = rng.nextInt(n); // returns a uniform random value between [0 and n)
+        item = a[r]; // grabs the item at the random index
         return item;
     }
 
@@ -103,8 +104,8 @@ public class RandomizedBag<Item> implements Iterable<Item> {
 
     // an iterator; ours doesn't implement remove() since it's optional
     private class RandomizedBagIterator implements Iterator<Item> {
-        private int i;
-        private Item itArr[];
+        private int i; // index of next element to return
+        private Item itArr[]; // array of items
 
         public RandomizedBagIterator() {
             /*
@@ -113,22 +114,23 @@ public class RandomizedBag<Item> implements Iterable<Item> {
              * - in this constructor, this can take time linear in the size of the bag
              * (ii) constant time next() and hasnext() calls.
              */
-            i = 0;
-            itArr = (Item[]) new Object[n];
-            for (int j = 0; j < n; j++) {
+            i = 0; // start at 0
+            itArr = (Item[]) new Object[n]; // create an array of size n
+            for (int j = 0; j < n; j++) { // copy the values from the bag to the iterator array
                 itArr[j] = a[j];
             }
-            StdRandom.shuffle(itArr); // randomize that bag <- unique random order for
-            // each iterator
+            StdRandom.shuffle(itArr); // randomize that bag <- unique random order for each iterator
             // if i didnt do this, the iterator would return the same order every time
+            // (confirmed by trying it out)
         }
 
-        public void remove() {
+        public void remove() { // dont need this for this data type
             throw new UnsupportedOperationException();
         }
 
         public boolean hasNext() {
             if (i < n) // if the iterator is not at the end of the amount of items, there is a next
+                       // item that exists
                 return true;
             else
                 return false;
@@ -140,7 +142,8 @@ public class RandomizedBag<Item> implements Iterable<Item> {
             Item item = null;
 
             // FIXME return the next entry from THIS iterator's random order
-            item = itArr[i];
+            // just had to return the next item in the iterator array, then incriment i
+            item = this.itArr[i];
             i++;
             return item;
         }

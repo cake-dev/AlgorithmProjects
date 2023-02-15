@@ -1,4 +1,5 @@
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
+import edu.princeton.cs.algs4.QuickFindUF;
 
 public class Percolation {
     private boolean[][] gridSites;
@@ -14,22 +15,24 @@ public class Percolation {
         this.gSize = N;
         gridSites = new boolean[gSize][gSize];
         unionFind = new WeightedQuickUnionUF(2 + gSize * gSize); // add 2 here to allow space for top and bottom nodes
-                                                                 // to test for percolation (when top and bottom are
-                                                                 // connected, we percolatin)
+        // to test for percolation (when top and bottom are
+        // connected, we percolatin)
         ufSize = unionFind.count();
         topNode = gSize * gSize; // topNode set to size^2 to be the "virtual top site"
         bottomNode = gSize * gSize + 1; // bottomNode set to the size^2+1 to create a "virtual bottom site"
 
         // connect the top row to the topNode, bottom row to the bottomNode
-        // NOTE: DONT NEED THIS
-        for (int i = 0; i < gSize; i++) { // loop from 0 to i, where max i is the length of the row
-            // unionFind.union(topNode, get1DFrom2D(0, i)); // union the topNode with each
-            // top row value in the UF object
+        // NOTE: DONT NEED THIS. This caused the top row to be open right away. I left
+        // it in here because it was part of the learning process.
+        // for (int i = 0; i < gSize; i++) { // loop from 0 to i, where max i is the
+        // length of the row
+        // unionFind.union(topNode, get1DFrom2D(0, i)); // union the topNode with each
+        // top row value in the UF object
 
-            // unionFind.union(bottomNode, get1DFrom2D(gSize - 1, i)); // union the
-            // bottomNode with each bottow row value
-            // in the UF object (gSize-1 to avoid out of bounds)
-        }
+        // unionFind.union(bottomNode, get1DFrom2D(gSize - 1, i)); // union the
+        // bottomNode with each bottow row value
+        // in the UF object (gSize-1 to avoid out of bounds)
+        // }
 
     }
 

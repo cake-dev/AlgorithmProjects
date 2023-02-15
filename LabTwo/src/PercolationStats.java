@@ -60,14 +60,17 @@ public class PercolationStats {
     public static void main(String[] args) {
         // Not required for the API, but useful to test if
         // your code is doing reasonable things
-        PercolationStats st = new PercolationStats(200, 100);
+        // time this
+        long startTime = System.currentTimeMillis();
+        PercolationStats st = new PercolationStats(1600, 100);
         System.out.println(st.percolations.length + " experiments run on " + st.percolations[0].gSize + "x"
                 + st.percolations[0].gSize + " grid");
         System.out.println("Sample mean of percolation threshold:       " + st.mean());
         System.out.println("Sample std dev of percolation threshold:    " + st.stddev());
         System.out.println("95% confidence low:                         " + st.confidenceLow());
         System.out.println("95% confidence high:                        " + st.confidenceHigh());
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time taken: " + (endTime - startTime) + "ms");
 
-        // ...
     }
 }
