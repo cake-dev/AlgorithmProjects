@@ -78,10 +78,10 @@ n = 32
 Run time estimate:
 
 When doubling n when T is constant, the run time increases by an increasing ratio.
-Taking the log log of the run time, and then taking the slope of the line, the slope rounds to 4 (3.697), which is consistent with the theoretical run time growth rate of O(n^4).
+Taking the log log of the run time and scaling factor (n), and then taking the slope of the line, the slope rounds to 4 (3.697), which is consistent with the theoretical run time growth rate of O(n^4).
 
 When doubling T when n is constant, the run time increases by a factor of ~2.  This is consistent with the theoretical run time growth rate of O(T).
-This can be confirmed by taking the log log of the run time, and then taking the slope of the line.  The slope rounds to 1 (0.85), which is consistent with the theoretical run time growth rate of O(T).
+This can be confirmed by taking the log log of the run time and scaling factor (T), and then taking the slope of the line.  The slope rounds to 1 (0.85), which is consistent with the theoretical run time growth rate of O(T).
 
 So, the empirical run time growth rate is O(n^3.697 * T^0.85) = O(n^4 * T^1).  This is consistent with the theoretical run time growth rate of O(n^4 * T).
 
@@ -117,10 +117,10 @@ n = 100
 Run time estimate:
 
 When doubling n when T is constant, the run time increases by a factor of ~4.  This is consistent with the theoretical run time growth rate of O(n^2).
-This can be confirmed by taking the log log of the run time, and then taking the slope of the line.  The slope rounds to 2 (2.0285), which is consistent with the theoretical run time growth rate of O(n^2).
+This can be confirmed by taking the log log of the run time and scaling factor (n), and then taking the slope of the line.  The slope rounds to 2 (2.0285), which is consistent with the theoretical run time growth rate of O(n^2).
 
 When doubling T when n is constant, the run time increases by a factor of ~2.  This is consistent with the theoretical run time growth rate of O(T).
-This can be confirmed by taking the log log of the run time, and then taking the slope of the line.  The slope rounds to 1 (0.7518), which is consistent with the theoretical run time growth rate of O(T).
+This can be confirmed by taking the log log of the run time and scaling factor (T), and then taking the slope of the line.  The slope rounds to 1 (0.7518), which is consistent with the theoretical run time growth rate of O(T).
 
 So, the empirical run time growth rate is O(n^2.0285 * T^0.7518) = O(n^2 * T^1).  This is consistent with the theoretical run time growth rate of O(n^2 * T).
 
@@ -142,7 +142,7 @@ None that I know of.
  *  classmates, and friends) and attribute them by name.
  *****************************************************************************/
 
-Kaelan helped me with determining the empirical run time estimates.
+Kaelan helped me with determining the empirical run time estimates. 
 
 
 /******************************************************************************

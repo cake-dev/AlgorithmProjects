@@ -73,6 +73,7 @@ public class MaxPQ {
         // print a graphical representation of the heap
         for (int i = 1; i <= 10; i++) {
             System.out.print(pq.pq[i] + " ");
+            // System.out.print(pq.delMax() + " ");
         }
         System.out.println();
     }
