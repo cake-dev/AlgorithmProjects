@@ -74,6 +74,9 @@ public class RandomizedBag<Item> implements Iterable<Item> {
         if (isEmpty()) // if the bag is empty, throw an exception
             throw new NoSuchElementException("out of bounds (underflow)");
         int r = rng.nextInt(n); // returns a uniform random value between [0 and n)
+        // the code below "extracts" the element from the random index, replaces it with
+        // the value at the end, nulls out the end, and returns the extracted random
+        // item
         item = a[r]; // grabs the item at the random index
         a[r] = a[n - 1]; // move the last element into position where random was (overwrites the value we
                          // grabbed)
@@ -115,11 +118,12 @@ public class RandomizedBag<Item> implements Iterable<Item> {
              * (ii) constant time next() and hasnext() calls.
              */
             i = 0; // start at 0
-            itArr = (Item[]) new Object[n]; // create an array of size n
+            itArr = (Item[]) new Object[n]; // create an array of size n, be sure to cast to Item type since java is
+                                            // silly
             for (int j = 0; j < n; j++) { // copy the values from the bag to the iterator array
                 itArr[j] = a[j];
             }
-            StdRandom.shuffle(itArr); // randomize that bag <- unique random order for each iterator
+            StdRandom.shuffle(itArr); // randomize that bag <- unique random order on iterator construction
             // if i didnt do this, the iterator would return the same order every time
             // (confirmed by trying it out)
         }
@@ -143,7 +147,7 @@ public class RandomizedBag<Item> implements Iterable<Item> {
 
             // FIXME return the next entry from THIS iterator's random order
             // just had to return the next item in the iterator array, then incriment i
-            item = this.itArr[i];
+            item = itArr[i];
             i++;
             return item;
         }
@@ -166,8 +170,6 @@ public class RandomizedBag<Item> implements Iterable<Item> {
         StdOut.println("(" + bag.size() + " left on bag)");
 
         Iterator<String> itr1 = bag.iterator();
-        if (!bag.isEmpty())
-            bag.get(); // test removal of one
         Iterator<String> itr2 = bag.iterator();
 
         StdOut.println("Here's what was left before removing one (in random order):");
@@ -176,6 +178,9 @@ public class RandomizedBag<Item> implements Iterable<Item> {
             StdOut.println(s + " ");
         }
         StdOut.println("");
+
+        if (!bag.isEmpty())
+            bag.get(); // test removal of one
 
         StdOut.println("Here's what was left after removing one (in random order):");
         while (itr2.hasNext()) {
