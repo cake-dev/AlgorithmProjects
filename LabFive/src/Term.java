@@ -16,9 +16,7 @@ public class Term implements Comparable<Term> {
         return new Comparator<Term>() {
             public int compare(Term v, Term w) {
                 if (v.weight > w.weight)
-                    // some condition
                     return -1;
-                // some condition
                 else if (v.weight < w.weight)
                     return 1;
                 else
@@ -34,6 +32,16 @@ public class Term implements Comparable<Term> {
     public static Comparator<Term> byPrefixOrder(int r) {
         return new Comparator<Term>() {
             public int compare(Term v, Term w) {
+                // check to see if r is greater than the length of either query to prevent out
+                // of bounds error
+                if (r > v.query.length() || r > w.query.length()) {
+                    if (v.query.length() > w.query.length())
+                        return 1;
+                    else if (v.query.length() < w.query.length())
+                        return -1;
+                    else
+                        return 0;
+                }
                 String sub_v = v.query.substring(0, r);
                 String sub_w = w.query.substring(0, r);
                 return sub_v.compareTo(sub_w);

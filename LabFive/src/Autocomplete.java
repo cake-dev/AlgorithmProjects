@@ -14,6 +14,16 @@ public class Autocomplete {
     // weight.
     public Term[] allMatches(String prefix) {
 
+        /**
+         * we can do this by creating a search term from the prefix.
+         * the search term is used in the deluxe binary search to find
+         * the first and last indices of the matched terms from the prefix-sorted
+         * autcomplete_terms.
+         * The range of values between first and last index will be the indexes of the
+         * matched values. We use this range and the first index to extract the matched
+         * terms from all terms and return them
+         **/
+
         // find first and last indexes of search term in sorted terms
         Term search_term = new Term(prefix, 0);
         int first_index = BinarySearchDeluxe.firstIndexOf(this.autcomplete_terms, search_term,
@@ -22,12 +32,13 @@ public class Autocomplete {
         int last_index = BinarySearchDeluxe.lastIndexOf(this.autcomplete_terms, search_term,
                 Term.byPrefixOrder(prefix.length()));
 
-        // get the number of terms between the first and last matched terms
-        int term_range = last_index - first_index;
+        int term_range = last_index - first_index + 1;
         Term[] term_matches = new Term[term_range];
 
-        // iterate from the first term to the end of the range to return the matched
-        // terms
+        // if no matches, return an empty array
+        if (first_index == -1 || last_index == -1)
+            return new Term[0];
+
         for (int i = 0; i < term_range; i++) {
             term_matches[i] = autcomplete_terms[first_index + i];
         }

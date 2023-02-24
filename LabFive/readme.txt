@@ -1,7 +1,7 @@
 /******************************************************************************
  *  Name:
  *
- *  Hours to complete assignment (optional):
+ *  Hours to complete assignment (optional): ~ 6 
  *
  ******************************************************************************/
 
@@ -13,7 +13,9 @@ Programming Assignment 2: Autocomplete
  *  finds the first index of a key that equals the search key.
  *****************************************************************************/
 
-
+Using a standard binary search approach, the firstIndexOf() method adjusts the hi bounds
+when a match is found to be the mid index. This allows the search to continue to the left until 
+the index of the first matched value is found.
 
 
 /******************************************************************************
@@ -26,12 +28,11 @@ Programming Assignment 2: Autocomplete
  *  leading coefficients and lower-order terms, e.g., m^2 + m log n.
  *****************************************************************************/
 
-constructor:
+constructor: O(n log n).  The Java system sort method is O(n log n) and the constructor calls it once.
 
-allMatches():
+allMatches(): O(m log n).  The firstIndexOf and lastIndexOf calls are O(log n)  The for loop that iterates through the matched terms is O(m).
 
-numberOfMatches():
-
+numberOfMatches(): Also O(m log n).  This function just calls length on the array returned by allMatches().
 
 
 
@@ -50,13 +51,11 @@ numberOfMatches():
  *  may have used in creating your design.
  *****************************************************************************/
 
+Sedgewicks implementation of BinarySearch.java from the Princeton Algorithms course website was used as a reference for the BinarySearchDeluxe.java implementation.
 
 /******************************************************************************
  *  Describe any serious problems you encountered.
  *****************************************************************************/
-
-
-
 
 
 /******************************************************************************
@@ -65,4 +64,4 @@ numberOfMatches():
  *  you enjoyed doing it.
  *****************************************************************************/
 
-
+This is a cool assignment. It has furthered my understanding of some nuances of Java.

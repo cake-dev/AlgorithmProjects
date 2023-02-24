@@ -33,14 +33,14 @@ public class RandomizedBag<Item> implements Iterable<Item> {
      * Is this stack empty?
      */
     public boolean isEmpty() {
-        return n == 0; // returns number of values in the array (not the size of the array)
+        return n == 0; // returns number of values in the array
     }
 
     /**
      * Returns the number of items in the stack.
      */
     public int size() {
-        return n; // return number of values in array, not array size
+        return n; // return number of values in array, not array length
     }
 
     /*
@@ -74,13 +74,14 @@ public class RandomizedBag<Item> implements Iterable<Item> {
         if (isEmpty()) // if the bag is empty, throw an exception
             throw new NoSuchElementException("out of bounds (underflow)");
         int r = rng.nextInt(n); // returns a uniform random value between [0 and n)
-        // the code below "extracts" the element from the random index, replaces it with
-        // the value at the end, nulls out the end, and returns the extracted random
-        // item
-        item = a[r]; // grabs the item at the random index
-        a[r] = a[n - 1]; // move the last element into position where random was (overwrites the value we
-                         // grabbed)
-        a[n - 1] = null; // remove the final element (because it was copied to a[r])
+        /**
+         * the code below "extracts" the element from the random index, replaces it with
+         * the value at the end, nulls out the end, and returns the extracted random
+         * item
+         */
+        item = a[r];
+        a[r] = a[n - 1];
+        a[n - 1] = null;
         n--; // reduce num items
         if (n > 0 && n == a.length / 4)
             resize(a.length / 2); // shrink size of array if necessary
@@ -89,11 +90,11 @@ public class RandomizedBag<Item> implements Iterable<Item> {
 
     // returns a random item and does NOT remove it
     public Item sample() {
-        Item item = null; // instantiate item
-        if (isEmpty()) // if the bag is empty, throw an exception
+        Item item = null;
+        if (isEmpty())
             throw new NoSuchElementException("out of bounds (underflow)");
-        int r = rng.nextInt(n); // returns a uniform random value between [0 and n)
-        item = a[r]; // grabs the item at the random index
+        int r = rng.nextInt(n);
+        item = a[r];
         return item;
     }
 
@@ -123,7 +124,7 @@ public class RandomizedBag<Item> implements Iterable<Item> {
             for (int j = 0; j < n; j++) { // copy the values from the bag to the iterator array
                 itArr[j] = a[j];
             }
-            StdRandom.shuffle(itArr); // randomize that bag <- unique random order on iterator construction
+            StdRandom.shuffle(itArr); // randomize that bag (~N time) <- unique random order on iterator construction
             // if i didnt do this, the iterator would return the same order every time
             // (confirmed by trying it out)
         }
@@ -147,8 +148,7 @@ public class RandomizedBag<Item> implements Iterable<Item> {
 
             // FIXME return the next entry from THIS iterator's random order
             // just had to return the next item in the iterator array, then incriment i
-            item = itArr[i];
-            i++;
+            item = itArr[i++];
             return item;
         }
     }

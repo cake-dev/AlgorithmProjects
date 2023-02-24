@@ -30,6 +30,9 @@ public class BinarySearchDeluxe {
             if (compare == 0) { // if mid key and search key are equal
                 first = mid; // set first index to mid index and continue searching. normal binary search
                              // returns here
+                if (first == 0 || comparator.compare(key, a[first - 1]) != 0)
+                    return first; // stop search when match is first item in array or the item before it does not
+                                  // equal it
                 hi = mid - 1; // adjust hi bounds down now that we know our mid is the index of an nth
                               // occurence of key
             } else if (compare > 0) { // if mid key is greater than search key
@@ -79,10 +82,6 @@ public class BinarySearchDeluxe {
         terms[4] = new Term("Jack", 1);
         terms[5] = new Term("Tanner", 17);
         Arrays.sort(terms);
-
-        // for (Term term : terms) {
-        // System.out.println(term);
-        // }
 
         Term searchme3 = new Term("J", 0);
         int first3 = BinarySearchDeluxe.firstIndexOf(terms, searchme3, Term.byPrefixOrder(1));
