@@ -44,14 +44,14 @@ public class Term implements Comparable<Term> {
                 }
                 String sub_v = v.query.substring(0, r);
                 String sub_w = w.query.substring(0, r);
-                return sub_v.compareTo(sub_w);
+                return sub_v.compareToIgnoreCase(sub_w);
             }
         };
     }
 
     // Compares the two terms in lexicographic order by query.
     public int compareTo(Term that) {
-        return this.query.compareTo(that.query);
+        return this.query.compareToIgnoreCase(that.query);
     }
 
     // Returns a string representation of this term in the following format:

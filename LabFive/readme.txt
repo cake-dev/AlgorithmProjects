@@ -23,17 +23,16 @@ the index of the first matched value is found.
  *  worst case) that each of the operations in the Autocomplete
  *  data type make, as a function of the number of terms n and the
  *  number of matching terms m?  (Big-Oh notation)
- *
+ * 
  *  Recall that with order-of-growth notation, you should discard
  *  leading coefficients and lower-order terms, e.g., m^2 + m log n.
  *****************************************************************************/
 
 constructor: O(n log n).  The Java system sort method is O(n log n) and the constructor calls it once.
 
-allMatches(): O(m log n).  The firstIndexOf and lastIndexOf calls are O(log n)  The for loop that iterates through the matched terms is O(m).
+allMatches(): O(log n + m log n).  The firstIndexOf and lastIndexOf calls are O(log n)  The final sort is O(m log n).
 
-numberOfMatches(): Also O(m log n).  This function just calls length on the array returned by allMatches().
-
+numberOfMatches(): O(log n). The firstIndexOf and lastIndexOf calls are O(log n). The number of matches is the difference between the indices.
 
 
 /******************************************************************************

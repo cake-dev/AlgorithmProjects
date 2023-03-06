@@ -33,18 +33,33 @@ public class MyHeapSort {
 
         long startTime = System.nanoTime();
         // Add code to heapify. You can find this in Heap.class (sort function)
+        MinPQ<Integer> heap2 = new MinPQ<Integer>(A);
         StdOut.println("\t\t" + (System.nanoTime() - startTime));
 
         StdOut.print("    Sort:");
+        n = A.length;
         startTime = System.nanoTime();
         // Add code to sort from that heap. You can find this in Heap.class (sort
         // function)
+        // delMin the top, then heapify
+        for (int i = 0; i < n; i++) {
+            heap2.delMin();
+            for (int k = n / 2; k >= 1; k--)
+                sink(A, k, n);
+            while (n > 1) {
+                exch(A, 1, n--);
+                sink(A, 1, n);
+            }
+        }
+
         StdOut.println("\t\t" + (System.nanoTime() - startTime));
     }
 
     private static Integer[] randomArray(int size) {
         Integer[] result = new Integer[size];
         // fill result with random integers
+        for (int i = 0; i < size; i++)
+            result[i] = (StdRandom.uniform(size) * size);
         return result;
     }
 

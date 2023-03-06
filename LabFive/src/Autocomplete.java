@@ -49,7 +49,16 @@ public class Autocomplete {
 
     // Returns the number of terms that start with the given prefix.
     public int numberOfMatches(String prefix) {
-        return allMatches(prefix).length;
+        // find first and last indexes of search term in sorted terms
+        Term search_term = new Term(prefix, 0);
+        int first_index = BinarySearchDeluxe.firstIndexOf(this.autcomplete_terms, search_term,
+                Term.byPrefixOrder(prefix.length()));
+
+        int last_index = BinarySearchDeluxe.lastIndexOf(this.autcomplete_terms, search_term,
+                Term.byPrefixOrder(prefix.length()));
+
+        int term_range = last_index - first_index + 1;
+        return term_range;
     }
 
     // A sample client for unit testing
