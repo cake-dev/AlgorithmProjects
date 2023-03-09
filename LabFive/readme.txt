@@ -30,7 +30,7 @@ the index of the first matched value is found.
 
 constructor: O(n log n).  The Java system sort method is O(n log n) and the constructor calls it once.
 
-allMatches(): O(log n + m log n).  The firstIndexOf and lastIndexOf calls are O(log n)  The final sort is O(m log n).
+allMatches(): O(log n + m log n).  The firstIndexOf and lastIndexOf calls are O(log n).  The final sort is O(m log n).
 
 numberOfMatches(): O(log n). The firstIndexOf and lastIndexOf calls are O(log n). The number of matches is the difference between the indices.
 
@@ -56,6 +56,8 @@ Sedgewicks implementation of BinarySearch.java from the Princeton Algorithms cou
  *  Describe any serious problems you encountered.
  *****************************************************************************/
 
+I did not add any sort of check for the byPrefixOrder comparator in the constructor.  This
+caused out of bounds errors when the search term was longer than the prefix.  I fixed it with a length check.
 
 /******************************************************************************
  *  List any other comments here. Feel free to provide any feedback
