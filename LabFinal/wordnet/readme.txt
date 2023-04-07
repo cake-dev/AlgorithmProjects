@@ -15,6 +15,8 @@ Programming Assignment 3: WordNet
 
 
 
+
+
 /******************************************************************************
  *  Describe concisely the data structure(s) you used to store the 
  *  information in hypernyms.txt. Why did you make this choice?
