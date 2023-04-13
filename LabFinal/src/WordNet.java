@@ -14,7 +14,7 @@ public class WordNet {
 
     // the set for the nouns has to be a set of integers which 
     private ST<String, SET<Integer>> nounsMap = new ST<String, SET<Integer>>();
-    private ST<Integer, String> idsMap = new ST<Integer, String>();
+    private ST<Integer, SET<String>> idsMap = new ST<Integer, SET<String>>();
     private Digraph wordnetDigraph;
     private ShortestCommonAncestor sca;
 
@@ -45,7 +45,13 @@ public class WordNet {
             }
             
             // add the synset to the idsMap
-            idsMap.put(synID, synStr);
+            if (idsMap.contains(synID)) {
+                idsMap.get(synID).add(synStr);
+            } else {
+                SET<String> set = new SET<String>();
+                set.add(synStr);
+                idsMap.put(synID, set);
+            }
 
             // Read next line from file and ..
             line = input.readLine();
@@ -98,7 +104,7 @@ public class WordNet {
         // get the sca of the nouns
         int scaID = sca.ancestor(noun1IDs, noun2IDs);
         // get the synset for the sca and return it
-        String synset = idsMap.get(scaID);
+        String synset = idsMap.get(scaID).toString();
 
         return synset;
     }
@@ -116,5 +122,15 @@ public class WordNet {
     public static void main(String[] args) throws IOException { // "throw" because the constructor throws.
         WordNet wnet = new WordNet("synsets.txt", "hypernyms.txt");
         // how to test?
+        // test the isNoun() method
+        System.out.println("Testing isNoun()...");
+        System.out.println(wnet.isNoun("aardvark"));
+        System.out.println(wnet.isNoun("aardvark2"));
+        // test the sca() method
+        System.out.println("Testing sca()...");
+        System.out.println(wnet.sca("aardvark", "aardwolf"));
+        // test the distance() method
+        System.out.println("Testing distance()...");
+        System.out.println(wnet.distance("aardvark", "aardwolf"));
     }
 }

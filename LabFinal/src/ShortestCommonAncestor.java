@@ -11,9 +11,6 @@ public class ShortestCommonAncestor {
     the class ShortestCommonAncestor represents a data type for finding a shortest common ancestor of two vertices in a rooted DAG.
     A shortest common ancestor is a vertex v for which the sum of the length of the shortest ancestral path from v to each of the two vertices is minimized.
     The length of a path between two vertices is the number of edges in the path.
-    The length of a path from a vertex v to itself is 0.
-    The length of a path from a vertex v to an ancestor w is the number of edges in the shortest path from v to w.
-        
     */ 
 
     // Instance variables
