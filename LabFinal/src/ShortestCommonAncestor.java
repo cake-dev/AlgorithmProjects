@@ -23,7 +23,7 @@ public class ShortestCommonAncestor {
     // constructor takes a rooted DAG as argument
     public ShortestCommonAncestor(Digraph G) {
         this.G = G;
-        this.bf_searches = new BreadthFirstDirectedPaths[G.V()]; // create a bfs object for each vertex so all shortest common ancestors can be found
+        this.bf_searches = new BreadthFirstDirectedPaths[G.V()]; // create a bfs object for each vertex so all shortest common ancestors can be found (lazy method)
         // this.counter = 1;
     }
 
